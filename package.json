@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Full-Stack File Toolkit: Compress, Convert, and Edit PDFs, DOCX, and Images",
   "scripts": {
-    "start": "node start.js",
+    "start": "node server/server.js",
     "start:prod": "node server/server.js",
+    "dev": "node start.js",
     "server": "node server/server.js",
     "client": "npm --prefix client run dev",
     "build": "npm --prefix server install --include=dev && npm --prefix client install --include=dev && npm --prefix client run build"

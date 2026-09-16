@@ -60,9 +60,12 @@ app.use('/api', (req, res) => {
 const clientDistPath = path.resolve(__dirname, '../client/dist');
 if (fs.existsSync(clientDistPath)) {
   app.use(express.static(clientDistPath));
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api')) return next();
-    res.sendFile(path.join(clientDistPath, 'index.html'));
+  // Express 5 path-safe fallback for Single Page Application
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api')) {
+      return res.sendFile(path.join(clientDistPath, 'index.html'));
+    }
+    next();
   });
 }
 
@@ -87,8 +90,8 @@ app.use((err, req, res, next) => {
 });
 
 if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`[FileForge Server] Online & listening at http://localhost:${PORT}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`[FileForge Server] Online & listening on 0.0.0.0:${PORT}`);
   });
 }
 
