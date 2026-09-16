@@ -49,10 +49,22 @@ app.get('/api/download/:id', (req, res) => {
   return res.end(item.buffer);
 });
 
+const fs = require('fs');
+
 // 404 handler for unknown API endpoints
 app.use('/api', (req, res) => {
   res.status(404).json({ error: `API endpoint "${req.originalUrl}" not found.` });
 });
+
+// Serve frontend client in production
+const clientDistPath = path.resolve(__dirname, '../client/dist');
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
 
 // Centralized error handler
 app.use((err, req, res, next) => {
