@@ -1,0 +1,14 @@
+{
+  "name": "fileforge",
+  "version": "1.0.0",
+  "description": "Full-Stack File Toolkit: Compress, Convert, and Edit PDFs, DOCX, and Images",
+  "scripts": {
+    "start": "node start.js",
+    "server": "node server/server.js",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build"
+  },
+  "keywords": ["pdf", "docx", "compress", "convert", "edit", "sharp", "pdf-lib"],
+  "author": "",
+  "license": "ISC"
+}

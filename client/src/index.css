@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --forge-bg: #0D0E10;
+    --forge-panel: #131518;
+    --forge-panel-elevated: #1A1C20;
+    --forge-border: #25282F;
+    --forge-border-focus: #3D424D;
+    --forge-accent: #D94A26;
+    --forge-accent-hover: #EC542F;
+    --forge-ink: #E8E5DE;
+    --forge-muted: #8E929B;
+    --forge-olive: #283729;
+    --forge-olive-text: #6BA86D;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--forge-bg);
+    color: var(--forge-ink);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 48, 'SOFT' 10;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Diagonal mechanical etching background pattern */
+.bg-forge-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-hatch-pattern {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.02) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.bg-hatch-accent {
+  background-size: 24px 24px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  animation: hatchAnimation 1.2s linear infinite;
+}
+
+@keyframes hatchAnimation {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 48px 0;
+  }
+}
+
+/* Hairline borders & workshop plates */
+.hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-focus {
+  border-color: rgba(217, 74, 38, 0.6);
+}
+
+/* Tactile paper card lift on hover / drag */
+.paper-card {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
+}
+
+.paper-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0D0E10;
+}
+::-webkit-scrollbar-thumb {
+  background: #25282F;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3D424D;
+}
